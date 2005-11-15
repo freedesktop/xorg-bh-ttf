@@ -19,7 +19,6 @@
 #  NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 #  CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-FONT_DIR = TTF
 FONT_FILES = \
 	luximbi.ttf \
 	luximb.ttf \
@@ -34,7 +33,7 @@ FONT_FILES = \
 	luxisri.ttf \
 	luxisr.ttf
 
-fontdir = $(libdir)/X11/fonts/$(FONT_DIR)
+fontdir = @FONTDIR@
 font_DATA = $(FONT_FILES)
 
 EXTRA_DIST = $(FONT_FILES) COPYRIGHT.BH autogen.sh
