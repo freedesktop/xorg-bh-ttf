@@ -36,6 +36,11 @@ FONT_FILES = \
 fontdir = @FONTDIR@
 font_DATA = $(FONT_FILES)
 
+fontconfigdir = $(sysconfdir)/fonts/conf
+actualconfigdir = $(fontconfigdir)/conf.d
+availconfigdir = $(fontconfigdir)/conf.avail
+availconfig_DATA = 42-luxi-mono.conf
+
 EXTRA_DIST = $(FONT_FILES) COPYRIGHT.BH
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
@@ -45,6 +50,9 @@ install-data-hook:
 	$(MKFONTSCALE) $(DESTDIR)$(fontdir)
 	@rm -f $(DESTDIR)$(fontdir)/font.dir
 	$(MKFONTDIR) $(DESTDIR)$(fontdir)
+	mkdir -p $(DESTDIR)$(actualconfigdir)
+	@rm -f $(DESTDIR)$(actualconfigdir)/$(availconfig_DATA)
+	ln -s ../conf.avail/$(availconfig_DATA) $(DESTDIR)$(actualconfigdir)
 	@RUN_FCCACHE@
 
 distuninstallcheck:
